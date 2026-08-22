@@ -31,7 +31,14 @@ jobs:
       id-token: write
     outputs:
       image_digest: ${{ steps.build.outputs.digest }}
+    
     steps:
+      - name: Debug GitHub context
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Ref:        $GITHUB_REF"
+          echo "Event:      $GITHUB_EVENT_NAME"
+          echo "Workflow:   $GITHUB_WORKFLOW"
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up Docker Buildx
