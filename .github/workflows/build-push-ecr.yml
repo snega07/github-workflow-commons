@@ -15,6 +15,9 @@ on:
       aws_region:
         required: true
         type: string
+    secrets:
+      AWS_ROLE_ARN:
+        required: true
     outputs:
       image_digest:
         description: Docker image digest
