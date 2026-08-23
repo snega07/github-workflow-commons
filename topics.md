@@ -1,9 +1,4 @@
 so in github i have know below topics
-
-
-
-
-
 worflow
 
 job
