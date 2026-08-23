@@ -52,7 +52,7 @@ jobs:
       - name: Fetch and Decode GitHub OIDC Token Claims
         run: |
           # 1. Request the raw OIDC token using GitHub's dynamic runner environment variables
-          JWT_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=://amazonaws.com" | jq -r '.value')
+          JWT_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" jq -r '.value')
           
           echo "========================================="
           echo "           DECODED OIDC CLAIMS           "
