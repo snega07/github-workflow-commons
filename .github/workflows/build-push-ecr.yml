@@ -49,19 +49,6 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ inputs.aws_region }}
           audience: sts.amazonaws.com
-      - name: Fetch and Decode GitHub OIDC Token Claims
-        run: |
-          # 1. Request the raw OIDC token using GitHub's dynamic runner environment variables
-          JWT_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" jq -r '.value')
-          
-          echo "========================================="
-          echo "           DECODED OIDC CLAIMS           "
-          echo "========================================="
-          
-          # 2. Extract the payload section (second block of the JWT), decode from base64, and format with jq
-          echo "$JWT_TOKEN" | cut -d'.' -f2 | base64 --decode 2>/dev/null | jq '{iss, aud, sub, repository, repository_owner, ref}'
-          
-          echo "========================================="
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
       - name: Build and push Docker image
