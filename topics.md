@@ -23,6 +23,12 @@ custom composite action.
 
 reusable job
 
+| Permission             | Purpose                    | Your project                              |
+| ---------------------- | -------------------------- | ----------------------------------------- |
+| `contents: read`       | Read repository contents   | Checkout, Gitleaks, SonarQube, etc.       |
+| `id-token: write`      | Request OIDC token         | Assume AWS IAM role                       |
+| `contents: write`      | Modify repository contents | Creating/updating repository content      |
+| `pull-requests: write` | Modify PR-related data     | PR comments/statuses, depending on action |
 
 
 🔴 High priority
